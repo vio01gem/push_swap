@@ -13,10 +13,18 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-#include <unistd.h>
-#include <stdlib.h>
-#include "ft_printf/ft_printf.h"
+# include <unistd.h>
+# include <stdlib.h>
+# include <limits.h>
+# include "libft/libft.h"
 
-int parcing_main (char **av);
+typedef struct s_stack
+{
+    int *data;
+    int size;
+}   t_stack;
+
+void    ft_error(void);
+void    parse_input(int argc, char **argv, t_stack *a);
 
 #endif

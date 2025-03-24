@@ -1,35 +1,48 @@
 NAME = push_swap
 
-PUSH_SRC = main.c\
-	parcing.c
-
+# === Source files for push_swap ===
+PUSH_SRC = main.c \
+	parcing.c \
+	error_utils.c
 
 PUSH_OBJ = $(PUSH_SRC:.c=.o)
-PRINTF_DIR = ft_printf
-PRINTF_NAME = $(PRINTF_DIR)/libftprintf.a
+
+# === Libft and ft_printf directories ===
+PRINTF = ft_printf
+PRINTF_NAME = $(PRINTF)/libftprintf.a
+
+LIBFT = libft
+LIBFT_NAME = $(LIBFT)/libft.a
+
+# === Compiler config ===
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
 DEL = rm -rf
-AR = ar -rcs
 
-all: $(PRINTF_NAME) $(NAME)
+# === All rule compiles libft, printf, and push_swap ===
+all: $(LIBFT_NAME) $(PRINTF_NAME) $(NAME)
 
-$(NAME): $(PUSH_OBJ) $(PRINTF_NAME)
-	$(CC) $(CFLAGS) -o $(NAME) $(PUSH_OBJ) $(PRINTF_NAME)
+$(NAME): $(PUSH_OBJ)
+	$(CC) $(CFLAGS) -o $(NAME) $(PUSH_OBJ) $(LIBFT_NAME) $(PRINTF_NAME)
+
+$(LIBFT_NAME):
+	make -C $(LIBFT)
 
 $(PRINTF_NAME):
-	make -C $(PRINTF_DIR)
+	make -C $(PRINTF)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	$(DEL) $(PUSH_OBJ)
-	make clean -C $(PRINTF_DIR)
+	make clean -C $(LIBFT)
+	make clean -C $(PRINTF)
 
 fclean: clean
 	$(DEL) $(NAME)
-	make fclean -C $(PRINTF_DIR)
+	make fclean -C $(LIBFT)
+	make fclean -C $(PRINTF)
 
 re: fclean all
 
