@@ -6,7 +6,7 @@
 /*   By: hajmoham <hajmoham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 13:50:12 by hajmoham          #+#    #+#             */
-/*   Updated: 2025/03/21 14:29:35 by hajmoham         ###   ########.fr       */
+/*   Updated: 2025/03/24 18:28:46 by hajmoham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <limits.h>
-# include "libft/libft.h"
+# include "Libft/libft.h"
 
 typedef struct s_stack
 {
@@ -24,7 +24,10 @@ typedef struct s_stack
     int size;
 }   t_stack;
 
-void    ft_error(void);
-void    parse_input(int argc, char **argv, t_stack *a);
+
+int is_valid_input(char *str);
+char **parcing (char **av);
+
+void	ft_put_str(char *s);
 
 #endif

@@ -6,43 +6,83 @@
 /*   By: hajmoham <hajmoham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 13:50:03 by hajmoham          #+#    #+#             */
-/*   Updated: 2025/03/21 14:28:09 by hajmoham         ###   ########.fr       */
+/*   Updated: 2025/03/24 18:33:53 by hajmoham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <unistd.h>
+
+
+// int	main(int ac, char **av)
+// {
+// 	if (ac < 2)
+// 		return (0);
+// 	if (ac == 2 && !av[1][0])
+// 		print_error();
+// 	av = parcing(av);
+// 	return (0);
+// }
+
+#include "push_swap.h"
+#include <stdlib.h>
+#include <unistd.h>
+
+void	ft_put_str(char *s)
+{
+	while (*s)
+		write(1, s++, 1);
+}
+
+void	print_args(char **args)
+{
+	int i = 0;
+
+	while (args[i])
+	{
+		ft_put_str(args[i]);
+		write(1, "\n", 1);
+		i++;
+	}
+}
 
 int	main(int ac, char **av)
 {
-	t_stack *stack;
-	int i, value;
+	char **splited;
+	int i = 0;
 
 	if (ac < 2)
 		return (0);
+	splited = parcing(av);
 
-	stack = malloc(sizeof(t_stack));
-	if (!stack)
-		return (1);
-	stack->a = NULL;
-	stack->b = NULL;
-	stack->size = 0;
-
-	i = 1;
-	while (i < ac)
+	while (splited[i])
 	{
-		if (!is_valid_number(av[i]))
-			print_error(stack);
-		value = ft_atoi(av[i], stack);
-		push_stack(&stack->a, value);
-		stack->size++;
+		ft_put_str("Parsed: ");
+		ft_put_str(splited[i]);
+		ft_put_str("\n");
+
+		if (!is_valid_input(splited[i]))
+		{
+			write(2, "Error\n", 6);
+			// Free memory
+			i = 0;
+			while (splited[i])
+				free(splited[i++]);
+			free(splited);
+			return (1);
+		}
 		i++;
 	}
-	if (has_duplicates(stack->a))
-		print_error(stack);
 
-	// TODO: Sorting logic goes here...
+	// Optional: print all parsed numbers
+	print_args(splited);
 
-	free_all(stack);
+	// Free memory
+	i = 0;
+	while (splited[i])
+		free(splited[i++]);
+	free(splited);
 	return (0);
 }
+
 

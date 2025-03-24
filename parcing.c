@@ -1,26 +1,26 @@
 #include "push_swap.h"
 
-int	is_valid_number(char *str)
+void	ft_putstr(char *s)
 {
-	int i = 0;
+	while (*s)
+		write(1, s++, 1);
+}
 
-	// Skip spaces
+int	is_valid_input(char *str)
+{
+	int i;
+	
+	i = 0;
 	while (str[i] == ' ' || str[i] == '\t')
 		i++;
-
-	// Check for optional '+' or '-'
 	if (str[i] == '+' || str[i] == '-')
 	{
 		if (!(str[i + 1] >= '0' && str[i + 1] <= '9'))
 			return (0);
 		i++;
 	}
-
-	// At least one digit
 	if (!(str[i] >= '0' && str[i] <= '9'))
 		return (0);
-
-	// Check all characters are digits after sign
 	while (str[i])
 	{
 		if (!(str[i] >= '0' && str[i] <= '9'))
@@ -30,40 +30,28 @@ int	is_valid_number(char *str)
 	return (1);
 }
 
-int	has_duplicates(t_node *head)
+char **parcing (char **av)
 {
-	t_node *current = head;
-	t_node *checker;
+	int i;
+	char *joined;
+	char *temp;
+	char **splited;
 
-	while (current)
+	i = 1;
+	joined = ft_strdup("");
+
+	while (av[i])
 	{
-		checker = current->next;
-		while (checker)
-		{
-			if (current->value == checker->value)
-				return (1);
-			checker = checker->next;
-		}
-		current = current->next;
+		temp = ft_strjoin(joined, av[i]);
+		free(joined);
+		joined = ft_strjoin(joined, " ");
+		free(temp);
+		i++;
 	}
-	return (0);
-}
 
-void	push_stack(t_node **stack, int value)
-{
-	t_node *new_node = malloc(sizeof(t_node));
-	if (!new_node)
-		return;
-	new_node->value = value;
-	new_node->next = NULL;
-
-	if (*stack == NULL)
-		*stack = new_node;
-	else
-	{
-		t_node *temp = *stack;
-		while (temp->next)
-			temp = temp->next;
-		temp->next = new_node;
-	}
+	printf("Joined string: [%s]\n", joined);
+	splited = ft_split(joined, ' ');
+	free(joined);
+	// is_valid_input(splited);
+	return(splited);
 }
