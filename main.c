@@ -6,83 +6,31 @@
 /*   By: hajmoham <hajmoham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 13:50:03 by hajmoham          #+#    #+#             */
-/*   Updated: 2025/03/24 18:33:53 by hajmoham         ###   ########.fr       */
+/*   Updated: 2025/04/02 15:30:40 by hajmoham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <unistd.h>
 
-
-// int	main(int ac, char **av)
-// {
-// 	if (ac < 2)
-// 		return (0);
-// 	if (ac == 2 && !av[1][0])
-// 		print_error();
-// 	av = parcing(av);
-// 	return (0);
-// }
-
-#include "push_swap.h"
-#include <stdlib.h>
-#include <unistd.h>
-
-void	ft_put_str(char *s)
+int     main(int ac, char **av)
 {
-	while (*s)
-		write(1, s++, 1);
+    char    **numbers;
+    t_list  *stack;
+    // t_list  *temp;
+
+    if (ac < 2)
+        return (0);
+    numbers = parse_input(av);
+    stack = build_stack(numbers);
+    free_array(numbers);
+    // temp = stack;
+    // while (temp)
+    // {
+    //     print_string("Value: ");
+    //     print_string(ft_itoa(temp->value));
+    //     print_string("\n");
+    //     temp = temp->next;
+    // }
+    free_all(stack);
+    return (0);
 }
-
-void	print_args(char **args)
-{
-	int i = 0;
-
-	while (args[i])
-	{
-		ft_put_str(args[i]);
-		write(1, "\n", 1);
-		i++;
-	}
-}
-
-int	main(int ac, char **av)
-{
-	char **splited;
-	int i = 0;
-
-	if (ac < 2)
-		return (0);
-	splited = parcing(av);
-
-	while (splited[i])
-	{
-		ft_put_str("Parsed: ");
-		ft_put_str(splited[i]);
-		ft_put_str("\n");
-
-		if (!is_valid_input(splited[i]))
-		{
-			write(2, "Error\n", 6);
-			// Free memory
-			i = 0;
-			while (splited[i])
-				free(splited[i++]);
-			free(splited);
-			return (1);
-		}
-		i++;
-	}
-
-	// Optional: print all parsed numbers
-	print_args(splited);
-
-	// Free memory
-	i = 0;
-	while (splited[i])
-		free(splited[i++]);
-	free(splited);
-	return (0);
-}
-
-

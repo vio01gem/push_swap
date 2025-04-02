@@ -1,48 +1,35 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: hajmoham <hajmoham@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/04/02 10:00:33 by hajmoham          #+#    #+#              #
+#    Updated: 2025/04/02 15:18:21 by hajmoham         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = push_swap
 
-# === Source files for push_swap ===
-PUSH_SRC = main.c \
-	parcing.c \
-	error_utils.c
+SRCS = main.c error_functions.c parse_arguments.c \
+       utils_1.c utils_2.c utils_3.c
 
-PUSH_OBJ = $(PUSH_SRC:.c=.o)
+OBJS = $(SRCS:.c=.o)
 
-# === Libft and ft_printf directories ===
-PRINTF = ft_printf
-PRINTF_NAME = $(PRINTF)/libftprintf.a
-
-LIBFT = libft
-LIBFT_NAME = $(LIBFT)/libft.a
-
-# === Compiler config ===
 CC = cc
-CFLAGS = -Wall -Werror -Wextra
-DEL = rm -rf
+CFLAGS = -Wall -Wextra -Werror -g3
 
-# === All rule compiles libft, printf, and push_swap ===
-all: $(LIBFT_NAME) $(PRINTF_NAME) $(NAME)
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
 
-$(NAME): $(PUSH_OBJ)
-	$(CC) $(CFLAGS) -o $(NAME) $(PUSH_OBJ) $(LIBFT_NAME) $(PRINTF_NAME)
-
-$(LIBFT_NAME):
-	make -C $(LIBFT)
-
-$(PRINTF_NAME):
-	make -C $(PRINTF)
-
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+all: $(NAME)
 
 clean:
-	$(DEL) $(PUSH_OBJ)
-	make clean -C $(LIBFT)
-	make clean -C $(PRINTF)
+	rm -f $(OBJS)
 
 fclean: clean
-	$(DEL) $(NAME)
-	make fclean -C $(LIBFT)
-	make fclean -C $(PRINTF)
+	rm -f $(NAME)
 
 re: fclean all
 
