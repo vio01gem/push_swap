@@ -6,7 +6,7 @@
 /*   By: hajmoham <hajmoham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 09:56:59 by hajmoham          #+#    #+#             */
-/*   Updated: 2025/04/03 14:39:26 by hajmoham         ###   ########.fr       */
+/*   Updated: 2025/04/03 17:11:56 by hajmoham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,4 +94,16 @@ long    ft_atoi_bounds(char *str)
         i++;
     }
     return (sign * result);
+}
+
+void    indexer(t_list *stack)
+{
+    int pos;
+
+    pos = 0;
+    while (stack)
+    {
+        stack->pos = pos++;
+        stack = stack->next;
+    }
 }

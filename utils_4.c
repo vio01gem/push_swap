@@ -6,7 +6,7 @@
 /*   By: hajmoham <hajmoham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 09:58:18 by hajmoham          #+#    #+#             */
-/*   Updated: 2025/04/03 14:20:05 by hajmoham         ###   ########.fr       */
+/*   Updated: 2025/04/03 17:11:44 by hajmoham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,7 @@ void    sort_positions(t_list *stack)
     t_list  *head;
     t_list  *current;
     int     temp;
-    int     pos;
-
+    
     if (!stack)
         exit_with_error(stack, NULL);
     head = stack;
@@ -54,13 +53,7 @@ void    sort_positions(t_list *stack)
         }
         stack = stack->next;
     }
-    stack = head;
-    pos = 0;
-    while (stack)
-    {
-        stack->pos = pos++;
-        stack = stack->next;
-    }
+    indexer(head);
 }
 
 // Transfers pos from sorted clone to original stack
@@ -104,7 +97,7 @@ void    if_sorted(t_list *stack_a, t_list *clone)
     {
         free_lst(head_a);
         free_lst(head_c);
-        exit(0);
+        exit (0);
     }
 }
 

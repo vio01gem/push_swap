@@ -6,7 +6,7 @@
 /*   By: hajmoham <hajmoham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 13:50:12 by hajmoham          #+#    #+#             */
-/*   Updated: 2025/04/03 16:25:58 by hajmoham         ###   ########.fr       */
+/*   Updated: 2025/04/03 17:10:07 by hajmoham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ char    *ft_strdup(const char *src);
 char    *ft_strjoin(char *s1, char *s2);
 int     ft_strlen(char *s);
 long    ft_atoi_bounds(char *str);
-int     int_len(int n);
-// char    *ft_itoa(int n);
+void    indexer(t_list *stack);
+
 
 //utils_2.c//
 int     my_count(char const *s, char c);
