@@ -6,7 +6,7 @@
 /*   By: hajmoham <hajmoham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 14:20:56 by hajmoham          #+#    #+#             */
-/*   Updated: 2025/04/03 16:45:35 by hajmoham         ###   ########.fr       */
+/*   Updated: 2025/04/03 19:56:23 by hajmoham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,5 +132,6 @@ void    sort_stack(t_list **stack_a, t_list **stack_b)
         four_sort(stack_a, stack_b);
     else if (len == 5)
         five_sort(stack_a, stack_b);
-    radix_sort(stack_a, stack_b, len);
+    else
+        radix_sort(stack_a, stack_b, len);
 }

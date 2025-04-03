@@ -6,7 +6,7 @@
 /*   By: hajmoham <hajmoham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 09:56:59 by hajmoham          #+#    #+#             */
-/*   Updated: 2025/04/03 17:11:56 by hajmoham         ###   ########.fr       */
+/*   Updated: 2025/04/03 19:59:29 by hajmoham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,14 +96,15 @@ long    ft_atoi_bounds(char *str)
     return (sign * result);
 }
 
-void    indexer(t_list *stack)
+// Assigns positions to elements in the stack_clone
+void    index_cloner(t_list *stack_clone)
 {
     int pos;
 
     pos = 0;
-    while (stack)
+    while (stack_clone)
     {
-        stack->pos = pos++;
-        stack = stack->next;
+        stack_clone->pos = pos++;
+        stack_clone = stack_clone->next;
     }
 }

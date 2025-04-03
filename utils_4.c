@@ -6,7 +6,7 @@
 /*   By: hajmoham <hajmoham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 09:58:18 by hajmoham          #+#    #+#             */
-/*   Updated: 2025/04/03 17:11:44 by hajmoham         ###   ########.fr       */
+/*   Updated: 2025/04/03 20:01:58 by hajmoham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_list  *clone_stack(t_list *stack)
 }
 
 // Sorts the stack by value and assigns pos based on sorted order
-void    sort_positions(t_list *stack)
+void    sort_clone(t_list *stack)
 {
     t_list  *head;
     t_list  *current;
@@ -53,7 +53,7 @@ void    sort_positions(t_list *stack)
         }
         stack = stack->next;
     }
-    indexer(head);
+    index_cloner(head);
 }
 
 // Transfers pos from sorted clone to original stack
