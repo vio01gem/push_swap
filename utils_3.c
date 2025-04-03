@@ -6,7 +6,7 @@
 /*   By: hajmoham <hajmoham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 10:03:21 by hajmoham          #+#    #+#             */
-/*   Updated: 2025/04/03 09:28:03 by hajmoham         ###   ########.fr       */
+/*   Updated: 2025/04/03 16:31:50 by hajmoham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_list  *create_node(int value)
 
     new = malloc(sizeof(t_list));
     if (!new)
-        exit_with_error();
+        return (NULL);
     new->value = value;
     new->pos = 0;
     new->next = NULL;
@@ -57,23 +57,42 @@ int     has_duplicate(t_list *stack, int value)
     return (0);
 }
 
+// Builds a linked list from an array of strings, validates each number
 t_list  *build_stack(char **numbers)
 {
     t_list  *stack;
     int     i;
     int     value;
+    t_list  *node;
 
     stack = NULL;
     i = 0;
     while (numbers[i])
     {
         if (!check_valid(numbers[i]))
-            exit_with_error();
+            exit_with_error(stack, numbers);
         value = (int)ft_atoi_bounds(numbers[i]);
         if (has_duplicate(stack, value))
-            exit_with_error();
-        stack_add_back(&stack, create_node(value));
+            exit_with_error(stack, numbers);
+        node = create_node(value);
+        if (!node)
+            exit_with_error(stack, numbers);
+        stack_add_back(&stack, node);
         i++;
     }
     return (stack);
+}
+
+// Counts the size of the linked list
+int	ft_lstsize(t_list *lst)
+{
+	int	i;
+
+	i = 0;
+	while (lst != NULL)
+	{
+		lst = lst->next;
+		i++;
+	}
+	return (i);
 }

@@ -25,14 +25,18 @@ void    print_string(char *s)
 }
 
 // Exits the program with an "Error" message to stderr
-void    exit_with_error(void)
+void    exit_with_error(t_list *lst, char **arr)
 {
     write(2, "Error\n", 6);
+    if (lst)
+        free_lst(lst);
+    if (arr)
+        free_array(arr);
     exit(1);
 }
 
 // Frees the entire linked list
-void    free_all(t_list *lst)
+void    free_lst(t_list *lst)
 {
     t_list  *temp;
 

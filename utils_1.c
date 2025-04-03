@@ -6,7 +6,7 @@
 /*   By: hajmoham <hajmoham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 09:56:59 by hajmoham          #+#    #+#             */
-/*   Updated: 2025/04/02 12:29:55 by hajmoham         ###   ########.fr       */
+/*   Updated: 2025/04/03 14:39:26 by hajmoham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,52 +95,3 @@ long    ft_atoi_bounds(char *str)
     }
     return (sign * result);
 }
-
-// Calculates the number of digits in an integer, including sign if negative for ft_itoa
-int int_len(int n)
-{
-    int i;
-
-    i = 0;
-    if (n == 0)
-        return (1);
-    if (n < 0)
-        i++;
-    while (n != 0)
-    {
-        n = n / 10;
-        i++;
-    }
-    return (i);
-}
-
-// Converts an integer to a string
-char    *ft_itoa(int n)
-{
-    unsigned int    len;
-    unsigned int    nb;
-    char            *str;
-
-    if (n == -2147483648)
-        return (ft_strdup("-2147483648"));
-    len = int_len(n);
-    str = malloc(len + 1);
-    if (str == NULL)
-        return (NULL);
-    str[len] = '\0';
-    if (n == 0)
-        str[0] = '0';
-    nb = n;
-    if (n < 0)
-    {
-        str[0] = '-';
-        nb = -n;
-    }
-    while (nb != 0)
-    {
-        str[--len] = '0' + (nb % 10);
-        nb = nb / 10;
-    }
-    return (str);
-}
-
