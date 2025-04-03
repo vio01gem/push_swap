@@ -6,7 +6,7 @@
 /*   By: hajmoham <hajmoham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 09:11:16 by hajmoham          #+#    #+#             */
-/*   Updated: 2025/04/02 15:40:03 by hajmoham         ###   ########.fr       */
+/*   Updated: 2025/04/03 08:59:18 by hajmoham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ char    **parse_input(char **av)
         if (is_empty(av[i]))
         {
             write (2, "empty string found\n", 19);
-            terminate_with_error();
+            exit_with_error();
         }
         temp = ft_strjoin(joined, " ");
         joined = ft_strjoin(temp, av[i]);

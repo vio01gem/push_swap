@@ -25,7 +25,7 @@ void    print_string(char *s)
 }
 
 // Exits the program with an "Error" message to stderr
-void    terminate_with_error(void)
+void    exit_with_error(void)
 {
     write(2, "Error\n", 6);
     exit(1);

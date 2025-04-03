@@ -6,7 +6,7 @@
 /*   By: hajmoham <hajmoham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 10:03:21 by hajmoham          #+#    #+#             */
-/*   Updated: 2025/04/02 19:45:35 by hajmoham         ###   ########.fr       */
+/*   Updated: 2025/04/03 09:28:03 by hajmoham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_list  *create_node(int value)
 
     new = malloc(sizeof(t_list));
     if (!new)
-        terminate_with_error();
+        exit_with_error();
     new->value = value;
     new->pos = 0;
     new->next = NULL;
@@ -57,92 +57,23 @@ int     has_duplicate(t_list *stack, int value)
     return (0);
 }
 
-// Adds numbers from a space-separated string to the stack
-int     add_to_stack(t_list **stack, char *arg)
+t_list  *build_stack(char **numbers)
 {
-    char    **numbers;
+    t_list  *stack;
     int     i;
-    long    num;
+    int     value;
 
-    numbers = ft_split(arg, ' ');
-    if (!numbers || !numbers[0])
-        return (free_array(numbers), 0);
+    stack = NULL;
     i = 0;
     while (numbers[i])
     {
         if (!check_valid(numbers[i]))
-            return (free_array(numbers), 0);
-        num = ft_atoi_bounds(numbers[i]);
-        if (has_duplicate(*stack, (int)num))
-            return (free_array(numbers), 0);
-        stack_add_back(stack, create_node((int)num));
+            exit_with_error();
+        value = (int)ft_atoi_bounds(numbers[i]);
+        if (has_duplicate(stack, value))
+            exit_with_error();
+        stack_add_back(&stack, create_node(value));
         i++;
     }
-    free_array(numbers);
-    return (1);
-}
-
-// Initializes the stack from command-line arguments
-void    init_stack(t_list **stack, char **av)
-{
-    int i;
-
-    i = 1;
-    while (av[i])
-    {
-        if (is_empty(av[i]) || !add_to_stack(stack, av[i]))
-        {
-            free_all(*stack);
-            terminate_with_error();
-        }
-        i++;
-    }
-}
-
-// Clones the stack for sorting
-t_list  *clone_stack(t_list *stack)
-{
-    t_list  *clone;
-    t_list  *new;
-
-    clone = NULL;
-    while (stack)
-    {
-        new = create_node(stack->value);
-        stack_add_back(&clone, new);
-        stack = stack->next;
-    }
-    return (clone);
-}
-
-// Sorts the stack and assigns pos based on sorted order
-void    sort_positions(t_list *stack)
-{
-    t_list  *current;
-    t_list  *next;
-    int     pos;
-
-    current = stack;
-    while (current && current->next)
-    {
-        next = current->next;
-        while (next)
-        {
-            if (current->value > next->value)
-            {
-                current->value ^= next->value;
-                next->value ^= current->value;
-                current->value ^= next->value;
-            }
-            next = next->next;
-        }
-        current = current->next;
-    }
-    current = stack;
-    pos = 0;
-    while (current)
-    {
-        current->pos = pos++;
-        current = current->next;
-    }
+    return (stack);
 }

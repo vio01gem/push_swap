@@ -6,7 +6,7 @@
 /*   By: hajmoham <hajmoham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 13:50:12 by hajmoham          #+#    #+#             */
-/*   Updated: 2025/04/02 10:57:06 by hajmoham         ###   ########.fr       */
+/*   Updated: 2025/04/03 09:11:55 by hajmoham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct s_list
 
 //error_function.c//
 void    print_string(char *s);
-void    terminate_with_error(void);
+void    exit_with_error(void);
 void    free_all(t_list *lst);
 void    free_array(char **arr);
 
@@ -34,10 +34,13 @@ char    *ft_strdup(const char *src);
 char    *ft_strjoin(char *s1, char *s2);
 int     ft_strlen(char *s);
 long    ft_atoi_bounds(char *str);
-char    *ft_itoa(int n);
 int     int_len(int n);
+char    *ft_itoa(int n);
 
 //utils2.c//
+int     my_count(char const *s, char c);
+char    *cpy_word(char const *s, char c, char *str);
+char    **allocation(char **array, char const *s, char c);
 char    **ft_split(char const *s, char c);
 
 //utils3.c//
