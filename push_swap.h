@@ -6,7 +6,7 @@
 /*   By: hajmoham <hajmoham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 13:50:12 by hajmoham          #+#    #+#             */
-/*   Updated: 2025/04/03 20:01:58 by hajmoham         ###   ########.fr       */
+/*   Updated: 2025/04/04 10:12:17 by hajmoham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int     check_valid(char *str);
 char    **parse_input(char **av);
 
 
-//movements.c//
+//movement.c//
 void	pb(t_list **a, t_list **b);
 void	pa(t_list **a, t_list **b);
 void	sa(t_list **a);
